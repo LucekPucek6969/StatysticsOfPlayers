@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Zawodnicy UKS CZAPLA</title>
+</head>
+<body>
+
+<form method="post" action="/mvc/player">
+    <label>Name:</label> <input type="text" required name="name"><br>
+    <label>Name:</label> <input type="text" required name="surname"><br>
+    <label>Name:</label> <input type="text" required name="sex"><br>
+    <input type="submit" value="Create player.model.Player">
+</form>
+
+<table>
+    <thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Sex</th>
+    </thead>
+    <tbody>
+    <tr th:each="player: ${player}">
+        <td th:text="${player.getId()}">sample id</td>
+        <td th:text="${player.getName()}">sample name</td>
+        <td th:text="${player.getSurname()}">sample surname</td>
+        <td th:text="${player.getSex()}">sample sex</td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+</body>
+</html>

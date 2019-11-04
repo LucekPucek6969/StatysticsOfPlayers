@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Player</title>
+</head>
+<body>
+<form method="post" action="/mvc/addTask">
+    <label>name:</label> <input type="text" required name="name"><br>
+    <label>surname:</label><input type="text" required name="surname"><br>
+    <label>sex:</label><input type="text" required name="sex"><br>
+    <input type="submit" value="Add">
+</form>
+</body>
