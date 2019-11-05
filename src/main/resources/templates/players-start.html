@@ -6,11 +6,9 @@
 </head>
 <body>
 
-<form method="post" action="/mvc/player">
-    <label>Name:</label> <input type="text" required name="name"><br>
-    <label>Name:</label> <input type="text" required name="surname"><br>
-    <label>Name:</label> <input type="text" required name="sex"><br>
-    <input type="submit" value="Create player.model.Player">
+<form method="post" action="/mvc/createPlayer">
+
+    <input type="submit" value="Create Player">
 </form>
 
 <table>
@@ -21,7 +19,7 @@
     <th>Sex</th>
     </thead>
     <tbody>
-    <tr th:each="player: ${player}">
+    <tr th:each="pl.sda.player: ${player}">
         <td th:text="${player.getId()}">sample id</td>
         <td th:text="${player.getName()}">sample name</td>
         <td th:text="${player.getSurname()}">sample surname</td>

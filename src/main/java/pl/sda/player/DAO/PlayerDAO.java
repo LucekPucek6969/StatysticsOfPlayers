@@ -1,10 +1,10 @@
-package player.DAO;
+package pl.sda.player.DAO;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import player.DAO.PlayerDAO;
-import player.model.Player;
+import pl.sda.player.model.Player;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 public class PlayerDAOimpl implements PlayerDAO {
 
@@ -30,9 +30,17 @@ public class PlayerDAOimpl implements PlayerDAO {
 
     @Override
     public Player findPlayerById(int id) {
-     String findById ="SELECT * FROM player.model.Player WHERE ID =:id";
+     String findById ="SELECT * FROM pl.sda.player.model.Player WHERE ID =:id";
         return null;
     }
+
+    @Override
+    public List<Player> findAllPlayers() {
+        return null;
+    }
+
+
+
 
     @Override
     public void update(int id, String name, String surname,String sex) {
