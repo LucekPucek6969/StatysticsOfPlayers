@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form method="post" action="/viewPlayers">
+<form method="get" action="/player/viewAllPlayers">
 
 
 </form>
@@ -21,12 +21,12 @@
     </thead>
     <tbody>
 
-    <tr th:each="player: ${players}">
-        <td th:text="${player.getId()}">sample id</td>
-        <td th:text="${player.getName()}">sample name</td>
-        <td th:text="${player.getSurname()}">sample surname</td>
-        <td th:text="${player.getSex()}">sample sex</td>
-        <td th:text="Edit">sample Edit</td>
+    <tr th:each="p: ${players}">
+        <td th:text="${p.getId()}">sample id</td>
+        <td th:text="${p.getName()}">sample name</td>
+        <td th:text="${p.getSurname()}">sample surname</td>
+        <td th:text="${p.getSex()}">sample sex</td>
+        <td th:text="Edit" th:href="@{/players(id=p.getId())}">sample Edit</td>
     </tr>
     </tbody>
 </table>

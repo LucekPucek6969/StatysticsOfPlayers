@@ -13,10 +13,12 @@ import java.util.List;
 @RequestMapping("/player")
 public class MVCPlayersControler {
 
-
     private PlayerDAO playerDAO;
 
-
+    @GetMapping("/start")
+    public String start() {
+        return "start";
+    }
 
     @GetMapping("/createPlayer")
     public String getCreatePlayer() {
@@ -26,13 +28,13 @@ public class MVCPlayersControler {
     @PostMapping("/createPlayer")
     public String createPlayer(Player player) {
         playerDAO.createPlayer(player);
-        return "redirect:viewPlayer";
+        return "redirect:viewAllPlayers";
     }
 
     @GetMapping("/viewAllPlayers")
      public String viewAllPlayers(Model model){
         List<Player> players = playerDAO.findAllPlayers();
         model.addAttribute("players",players);
-        return "viewAllPlayers.html";
+        return "viewAllPlayers";
     }
 }

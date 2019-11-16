@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.TemporalAmount;
 
 
 @Data
@@ -30,8 +33,12 @@ public class Player {
     //private String dateEnding;
     //private String ageCategory;
     private String sex;
+    private LocalDate dateOfBirth;
 
-
+    public String ageCategory(LocalDate now) {
+//        Period.between(dateOfBirth, now).getYears();
+        return "U" + (now.getYear() - dateOfBirth.getYear());
+    }
 
     //private String trener;
     //private boolean isActive;
