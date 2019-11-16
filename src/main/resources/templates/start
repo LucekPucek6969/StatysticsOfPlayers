@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<meta charset="UTF-8">
+<title>Statystyki zawodnikow</title>
+
+<a href="createPlayer">Dodaj zawodnika</a>
+<a href="viewAllPlayers.html">Pokaz zawodnikow</a>
+<a href="viewPlayer">Pokaz zawodnika</a>
+<a href="createEvent">Dodaj zawody</a>
+<a href="viewEvents">Pokaz zawody</a>

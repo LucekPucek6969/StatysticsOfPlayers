@@ -1,4 +1,4 @@
-package player.model;
+package pl.sda.player.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

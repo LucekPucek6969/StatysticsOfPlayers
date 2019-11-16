@@ -1,12 +1,15 @@
 package pl.sda.player.DAO;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import pl.sda.player.model.Player;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
-public class PlayerDAOimpl implements PlayerDAO {
+public class PlayerDAO implements RowMapper<Player> {
 
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
@@ -19,31 +22,45 @@ public class PlayerDAOimpl implements PlayerDAO {
 
     }
 
-    @Override
+
     public int createPlayer(Player player) {
         String create = "INSERT INTO Player(name,surname,sex) VALUES( ?, ?, ?)";
         return jdbcTemplate.update(create, new Object[]{
                 player.getName(),player.getSurname(),player.getSex() });
     }
 
+    public Player findPlayerBySurname(String surname){
+        String findPlayerBySurname = "SELECT * FROM PLAYER WHERE surname = ?";
+        return jdbcTemplate.queryForObject(findPlayerBySurname, new Object[]{surname}, Player.class);
+    }
 
 
-    @Override
     public Player findPlayerById(int id) {
-     String findById ="SELECT * FROM pl.sda.player.model.Player WHERE ID =:id";
-        return null;
+
+     String findPlayerById ="SELECT * FROM PLAYER WHERE ID = ?";
+     return jdbcTemplate.queryForObject(findPlayerById, new Object[]{id}, Player.class);
     }
 
-    @Override
+
     public List<Player> findAllPlayers() {
-        return null;
+
+        String findAllPlayers = "SELECT * FROM PLAYER";
+        List<Player> players = jdbcTemplate.query(findAllPlayers, new PlayerDAO());
+        return players;
     }
 
 
-
-
-    @Override
     public void update(int id, String name, String surname,String sex) {
 
+    }
+
+    @Override
+    public Player mapRow(ResultSet resultSet, int i) throws SQLException {
+        Player player = new Player();
+        player.setId(resultSet.getInt("ID"));
+        player.setName(resultSet.getString("NAME"));
+        player.setSurname(resultSet.getString("SURNAME"));
+        player.setSex(resultSet.getString("SEX"));
+        return player;
     }
 }

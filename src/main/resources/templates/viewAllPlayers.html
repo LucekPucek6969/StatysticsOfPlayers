@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>Zawodnicy UKS CZAPLA</title>
+    <title>Statystyki zawodnikow</title>
 </head>
 <body>
 
-<form method="post" action="/mvc/createPlayer">
+<form method="post" action="/viewPlayers">
 
-    <input type="submit" value="Create Player">
+
 </form>
 
 <table>
@@ -17,13 +17,16 @@
     <th>Name</th>
     <th>Surname</th>
     <th>Sex</th>
+    <th>Edit</th>
     </thead>
     <tbody>
-    <tr th:each="pl.sda.player: ${player}">
+
+    <tr th:each="player: ${players}">
         <td th:text="${player.getId()}">sample id</td>
         <td th:text="${player.getName()}">sample name</td>
         <td th:text="${player.getSurname()}">sample surname</td>
         <td th:text="${player.getSex()}">sample sex</td>
+        <td th:text="Edit">sample Edit</td>
     </tr>
     </tbody>
 </table>
