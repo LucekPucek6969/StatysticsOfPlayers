@@ -10,26 +10,43 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/player")
+
 public class MVCPlayersControler {
 
     private PlayerDAO playerDAO;
 
-    @GetMapping("/start")
+    public MVCPlayersControler(PlayerDAO playerDAO) {
+        this.playerDAO = playerDAO;
+    }
+
+    @RequestMapping("/")
     public String start() {
-        return "start";
+        return "index";
     }
 
-    @GetMapping("/createPlayer")
-    public String getCreatePlayer() {
-        return "createPlayer";
+    @RequestMapping("/playerForm")
+    public String viewPlayer(){
+        return "playerForm";
     }
 
-    @PostMapping("/createPlayer")
+//    @RequestMapping("/addPlayerForm")
+//    public String viewAddPlayer(Model model){
+//     model.addAttribute("addNewPayer",player);
+//        return "addPlayerForm";
+//    }
+
+
+
+    @PostMapping("/addNewPlayer")
     public String createPlayer(Player player) {
         playerDAO.createPlayer(player);
-        return "redirect:viewAllPlayers";
-    }
+        Model model=null;
+        model.addAttribute("player",player);
+
+        return "redirect:addPlayerView";
+            }
+
+
 
     @GetMapping("/viewAllPlayers")
      public String viewAllPlayers(Model model){

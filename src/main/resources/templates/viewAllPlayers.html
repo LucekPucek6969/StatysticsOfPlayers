@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Statystyki zawodnikow</title>
+    <p><a href="start">Strona główna</a></p>
 </head>
 <body>
 
-<form method="get" action="/player/viewAllPlayers">
+<form method="get" action="viewAllPlayers">
 
+    <h3 align="left">ZAWODNICY UKS CZAPLA</h3>
 
-</form>
 
 <table>
     <thead>
@@ -21,15 +22,19 @@
     </thead>
     <tbody>
 
-    <tr th:each="p: ${players}">
-        <td th:text="${p.getId()}">sample id</td>
-        <td th:text="${p.getName()}">sample name</td>
-        <td th:text="${p.getSurname()}">sample surname</td>
-        <td th:text="${p.getSex()}">sample sex</td>
-        <td th:text="Edit" th:href="@{/players(id=p.getId())}">sample Edit</td>
-    </tr>
+   <tr th:each="p: ${players}">
+           <td th:text="${p.getId()}">sample id</td>
+            <td th:text="${p.getName()}">sample name</td>
+           <td th:text="${p.getSurname()}">sample surname</td>
+           <td th:text="${p.getSex()}">sample sex</td>
+           <td><a th:href="@{/players(id=${p.getId()})}">Edit</a></td>
+   </tr>
     </tbody>
 </table>
+
+
+
+</form>
 
 
 
