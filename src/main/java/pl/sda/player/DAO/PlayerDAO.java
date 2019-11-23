@@ -8,6 +8,7 @@ import pl.sda.player.model.Player;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Component
@@ -19,10 +20,12 @@ public class PlayerDAO implements RowMapper<Player> {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public Player newPlayer=null;
+
     public int createPlayer(Player player) {
-        String create = "INSERT INTO Player(name,surname,sex) VALUES( ?, ?, ?)";
+        String create = "INSERT INTO Player(NAME, SURNAME, SEX, DATEOFBIRTH) VALUES( ?, ?, ?, ?)";
         return jdbcTemplate.update(create, new Object[]{
-                player.getName(),player.getSurname(),player.getSex() });
+                player.getName(),player.getSurname(),player.getSex(),player.getDateOfBirth() });
     }
 
     public Player findPlayerBySurname(String surname){
@@ -57,6 +60,7 @@ public class PlayerDAO implements RowMapper<Player> {
         player.setName(resultSet.getString("NAME"));
         player.setSurname(resultSet.getString("SURNAME"));
         player.setSex(resultSet.getString("SEX"));
+        player.setDateOfBirth(LocalDate.parse(resultSet.getString("DATEOFBIRTH")));
         return player;
     }
 }

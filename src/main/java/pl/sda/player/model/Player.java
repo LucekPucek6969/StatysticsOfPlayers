@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -19,20 +20,47 @@ public class Player {
     private int id;
     private String name;
     private String surname;
-    //private String licenceNumber;
-    //private String dateOfBirth;
+    private String sex;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOfBirth;
+
     //private String placeOfResidence;
     //private String dateStarting;
     //private String dateEnding;
     //private String ageCategory;
-    private String sex;
-   //private LocalDate dateOfBirth;
+    //private LocalDate dateOfBirth;
+    //private String licenceNumber;
 
-    //public String ageCategory(LocalDate now) {
-// //      Period.between(dateOfBirth, now).getYears(); metoda liczy dokladnie od dnia urodzenia w tym
-    //                                                  przypadku zbyt dokladna
-     //   return "U" + (now.getYear() - dateOfBirth.getYear());  //ta metoda liczy wg rocznikow
-    //}
+    public String ageCategory() {
+        LocalDate currentDate = LocalDate.now();
+        String ageCat;
+        int s = Period.between(dateOfBirth, currentDate).getYears();
+
+        if (s >= 23)
+            return "senior";
+        else if (s < 23 & s >= 20)
+            return "U23";
+        else if (s < 20 & s >= 18)
+            return "U20";
+        else if (s < 18 & s >= 16)
+            return "U18";
+        else if (s < 16 & s >= 14)
+            return "U16";
+        else if (s < 14 & s >= 12)
+            return "U12";
+        else
+            return "U10";
+
+    }
+}
+
+
+
+
+      //Period.between(LocalDate.(dateOfBirth), now).getYears();
+      //  return "U" + (now.getYear() - dateOfBirth.getYear());  //ta metoda liczy wg rocznikow
+
 
     //private String trener;
     //private boolean isActive;
@@ -40,4 +68,4 @@ public class Player {
 
 
 
-}
+

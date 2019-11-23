@@ -1,16 +1,14 @@
 package pl.sda.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.sda.player.DAO.PlayerDAO;
 import pl.sda.player.model.Player;
 import java.util.List;
 
 
 @Controller
-
+@RequestMapping("/players")
 public class MVCPlayersControler {
 
     private PlayerDAO playerDAO;
@@ -19,39 +17,31 @@ public class MVCPlayersControler {
         this.playerDAO = playerDAO;
     }
 
-    @RequestMapping("/")
+    @GetMapping("start")
     public String start() {
-        return "index";
+        return "start";
     }
 
-    @RequestMapping("/playerForm")
-    public String viewPlayer(){
-        return "playerForm";
-    }
-
-//    @RequestMapping("/addPlayerForm")
-//    public String viewAddPlayer(Model model){
-//     model.addAttribute("addNewPayer",player);
-//        return "addPlayerForm";
-//    }
-
-
-
-    @PostMapping("/addNewPlayer")
-    public String createPlayer(Player player) {
-        playerDAO.createPlayer(player);
-        Model model=null;
+    @GetMapping("playerView")
+    public String viewPlayer(Player player,Model model){
+        player=playerDAO.newPlayer;
         model.addAttribute("player",player);
+        playerDAO.newPlayer=null;
+        return "playerView";
+    }
 
-        return "redirect:addPlayerView";
-            }
 
-
-
-    @GetMapping("/viewAllPlayers")
-     public String viewAllPlayers(Model model){
+    @GetMapping("viewAllPlayers")
+    public String viewAllPlayers(Model model){
         List<Player> players = playerDAO.findAllPlayers();
         model.addAttribute("players",players);
         return "viewAllPlayers";
     }
+    @PostMapping("viewAllPlayers")
+    public String createPlayer(Player player){
+        playerDAO.createPlayer(player);
+        playerDAO.newPlayer=player;
+        return "redirect:/players/playerView";
+            }
+
 }

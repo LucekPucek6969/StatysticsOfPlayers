@@ -12,15 +12,15 @@ class PlayerDAOTest {
             " then Jagna will to be in Base pl.sda.player.model.Player")
     @Test
     void createPlayerTest() {
-        // given
-        Player player = new Player(22, "Jagna", "Strzelba", "female");
-        PlayerDAO playerDAO = new PlayerDAO(null);
-
-        // when
-        playerDAO.createPlayer(player);
-
-        // then
-        Player playerFromDao = playerDAO.findPlayerById(22);
+//        // given
+//        Player player = new Player(22, "Jagna", "Strzelba", "female");
+//        PlayerDAO playerDAO = new PlayerDAO(null);
+//
+//        // when
+//        playerDAO.createPlayer(player);
+//
+//        // then
+//        Player playerFromDao = playerDAO.findPlayerById(22);
     }
 
     @DisplayName("get all player and check List<Player> is not empty")

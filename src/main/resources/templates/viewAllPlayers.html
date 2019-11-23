@@ -11,30 +11,43 @@
 
     <h3 align="left">ZAWODNICY UKS CZAPLA</h3>
 
-
-<table>
+<table border="1">
     <thead>
     <th>Id</th>
-    <th>Name</th>
-    <th>Surname</th>
-    <th>Sex</th>
+    <th>Imię</th>
+    <th>Nazwisko</th>
+    <th>Płeć</th>
+    <th>Data_urodzenia</th>
+    <th>Kategoria_wiekowa</th>
     <th>Edit</th>
     </thead>
     <tbody>
 
    <tr th:each="p: ${players}">
-           <td th:text="${p.getId()}">sample id</td>
-            <td th:text="${p.getName()}">sample name</td>
-           <td th:text="${p.getSurname()}">sample surname</td>
-           <td th:text="${p.getSex()}">sample sex</td>
-           <td><a th:href="@{/players(id=${p.getId()})}">Edit</a></td>
+           <td th:text="${p.getId()}">      id </td>
+           <td th:text="${p.getName()}">    Imię </td>
+           <td th:text="${p.getSurname()}"> Nazwisko </td>
+           <td th:text="${p.getSex()}">     Płeć </td>
+           <td th:text="${p.getDateOfBirth()}"> Data_urodzenia </td>
+           <td th:text="${p.ageCategory()}"> Kategoria_wiekowa </td>
+           <td><a th:href="@{/players(id=${p.getId()})}"> Edit </a></td>
    </tr>
     </tbody>
-</table>
-
-
-
+</table >
 </form>
+
+
+<h3 align="left">dodaj zawodnika do bazy danych</h3>
+
+<form method="post" action="/players/viewAllPlayers">
+    <label>Podaj Imię:</label> <input type="text" required name="name"><br>
+    <label>Podaj Nazwisko:</label><input type="text" required name="surname"><br>
+    <label>Podaj Płeć:</label><input type="text"  required name="sex"><br>
+    <label>Podaj Datę urodzenia :</label><input type="date" required name="dateOfBirth"><br>
+
+    <input type="submit" value="Dodaj">
+</form>
+
 
 
 

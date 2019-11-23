@@ -2,23 +2,39 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>playerForm</title>
+    <title>playerView</title>
 </head><p><a href="start">Strona główna</a></p>
+<form method="get" action="playerView">
 <body>
-<table border="2">
+
+<table border="3">
     <thead>
     <th>Id</th>
-    <th>Name</th>
-    <th>Surname</th>
-    <th>Sex</th>
-    <th>Edit</th>
+    <th>Imię</th>
+    <th>Nazwisko</th>
+    <th>Płeć</th>
+    <th>Data urodzin</th>
+    <th>Kategoria wiekowa</th>
+
+    <<th>Edit</th>
     </thead>
     <tbody>
 
-to jest strona playerForm
+    <tr >
+        <td th:text="${player.getId()}"> id </td>
+        <td th:text="${player.getName()}"> imię </td>
+        <td th:text="${player.getSurname()}"> nazwisko </td>
+        <td th:text="${player.getSex()}"> płeć </td>
+        <td th:text="${player.getDateOfBirth()}"> data urodzin</td>
+
+        <td th:text="${player.ageCategory()}"> kategoria wiekowa </td>
+
+        <td><a href="@{/player(id=${player.getId()})}">Edit</a></td>
+    </tr>
+
 
     </tbody>
-</table >
+</table>
 
 
 <p><a href="viewAllPlayers">Pokaz wszystkich zawodnikow</a></p>
@@ -26,4 +42,5 @@ to jest strona playerForm
 
 
 </body>
+</form>
 </html>
