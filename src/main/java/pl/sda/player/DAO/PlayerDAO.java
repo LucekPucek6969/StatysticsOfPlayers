@@ -22,10 +22,20 @@ public class PlayerDAO implements RowMapper<Player> {
 
     public Player newPlayer=null;
 
+    public List<Player> findAllPlayers() {
+        String findAllPlayers = "SELECT * FROM Player";
+        List<Player> players = jdbcTemplate.query(findAllPlayers, this::mapRow);
+        return players;
+    }
+
     public int createPlayer(Player player) {
-        String create = "INSERT INTO Player(NAME, SURNAME, SEX, DATEOFBIRTH) VALUES( ?, ?, ?, ?)";
+        String create = "INSERT INTO " +
+                "Player(NAME, SURNAME, SEX, DATEOFBIRTH,LOCATION,TEL,LICENCENUMBER) " +
+                "VALUES( ?, ?, ?, ?, ?, ?, ?)";
         return jdbcTemplate.update(create, new Object[]{
-                player.getName(),player.getSurname(),player.getSex(),player.getDateOfBirth() });
+                player.getName(),player.getSurname(),player.getSex(),
+                player.getDateOfBirth(),player.getLocation(),
+                player.getTel(),player.getLicenceNumber()});
     }
 
     public Player findPlayerBySurname(String surname){
@@ -41,15 +51,10 @@ public class PlayerDAO implements RowMapper<Player> {
     }
 
 
-    public List<Player> findAllPlayers() {
-
-        String findAllPlayers = "SELECT * FROM Player";
-        List<Player> players = jdbcTemplate.query(findAllPlayers, this::mapRow);
-        return players;
-    }
 
 
-//    public void update(int id, String name, String surname,String sex) {
+
+//    public void update(int id) {
 //
 //    }
 
@@ -61,6 +66,9 @@ public class PlayerDAO implements RowMapper<Player> {
         player.setSurname(resultSet.getString("SURNAME"));
         player.setSex(resultSet.getString("SEX"));
         player.setDateOfBirth(LocalDate.parse(resultSet.getString("DATEOFBIRTH")));
+        player.setLocation(resultSet.getString("LOCATION"));
+        player.setTel(resultSet.getString("TEL"));
+        player.setLicenceNumber(resultSet.getString("LICENCENUMBER"));
         return player;
     }
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>newPlayerView</title>
+</head><p><a href="start">Strona główna</a></p><br />
+<form method="get" action="newPlayerView">
+<body>
+
+<table border="3">
+    <thead>
+    <th>Id</th>
+    <th>Imię</th>
+    <th>Nazwisko</th>
+    <th>Płeć</th>
+    <th>Data urodzin</th>
+    <th>Kategoria wiekowa</th>
+    <th>Adres</th>
+    <th>Telefon kontaktowy</th>
+    <th>Numer Licencji</th>
+    <<th>   </th>
+    <<th>   </th>
+    </thead>
+    <tbody>
+
+    <tr >
+        <td th:text="${player.getId()}"> id </td>
+        <td th:text="${player.getName()}"> imię </td>
+        <td th:text="${player.getSurname()}"> nazwisko </td>
+        <td th:text="${player.getSex()}"> płeć </td>
+        <td th:text="${player.getDateOfBirth()}"> data urodzin</td>
+        <td th:text="${player.ageCategory()}"> kategoria wiekowa </td>
+        <td th:text="${player.getLocation()}"> adres </td>
+        <td th:text="${player.getTel()}"> telefon </td>
+        <td th:text="${player.getLicenceNumber()}"> numer licencji </td>
+
+        <td><a href="@{/player(id=${player.getId()})}">Popraw dane</a></td>
+        <td><a href="@{/player(id=${player.getId()})}">Usuń z bazy</a></td>
+    </tr>
+
+
+    </tbody>
+</table>
+
+
+<p><a href="viewAllPlayers">Pokaz wszystkich zawodnikow</a></p>
+<p><a href="viewEvents">Pokaz zawody</a></p>
+
+
+</body>
+</form>
+</html>

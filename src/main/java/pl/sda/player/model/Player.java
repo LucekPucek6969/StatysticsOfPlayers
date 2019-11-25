@@ -24,17 +24,16 @@ public class Player {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
-
-    //private String placeOfResidence;
-    //private String dateStarting;
+    private String location;
+    private String tel;
+    private String licenceNumber;
     //private String dateEnding;
     //private String ageCategory;
     //private LocalDate dateOfBirth;
-    //private String licenceNumber;
+
 
     public String ageCategory() {
         LocalDate currentDate = LocalDate.now();
-        String ageCat;
         int s = Period.between(dateOfBirth, currentDate).getYears();
 
         if (s >= 23)

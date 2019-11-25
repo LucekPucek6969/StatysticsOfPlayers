@@ -23,15 +23,13 @@ public class MVCPlayersControler {
     }
 
     @GetMapping("playerView")
-    public String viewPlayer(Player player,Model model){
-        player=playerDAO.newPlayer;
-        model.addAttribute("player",player);
-        playerDAO.newPlayer=null;
+    public String playerEdit(int id, Model model){
+        Player player = playerDAO.findPlayerById(id);
+        model.addAttribute("player", player);
         return "playerView";
     }
 
-
-    @GetMapping("viewAllPlayers")
+      @GetMapping("viewAllPlayers")
     public String viewAllPlayers(Model model){
         List<Player> players = playerDAO.findAllPlayers();
         model.addAttribute("players",players);
@@ -41,7 +39,13 @@ public class MVCPlayersControler {
     public String createPlayer(Player player){
         playerDAO.createPlayer(player);
         playerDAO.newPlayer=player;
-        return "redirect:/players/playerView";
-            }
-
+        return "redirect:/players/newPlayerView";
+    }
+    @GetMapping("newPlayerView")
+    public String viewNewPlayer(Player player, Model model){
+        player=playerDAO.newPlayer;
+        model.addAttribute("player",player);
+        playerDAO.newPlayer=null;
+        return "newPlayerView";
+    }
 }
