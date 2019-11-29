@@ -5,7 +5,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import pl.sda.player.model.Player;
 
-import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -21,6 +20,7 @@ public class PlayerDAO implements RowMapper<Player> {
     }
 
     public Player newPlayer=null;
+    public Long newPlayerID=null;
 
     public List<Player> findAllPlayers() {
         String findAllPlayers = "SELECT * FROM Player";
@@ -28,7 +28,7 @@ public class PlayerDAO implements RowMapper<Player> {
         return players;
     }
 
-    public int createPlayer(Player player) {
+    public long createPlayer(Player player) {
         String create = "INSERT INTO " +
                 "Player(NAME, SURNAME, SEX, DATEOFBIRTH,LOCATION,TEL,LICENCENUMBER) " +
                 "VALUES( ?, ?, ?, ?, ?, ?, ?)";
@@ -44,7 +44,7 @@ public class PlayerDAO implements RowMapper<Player> {
     }
 
 
-    public Player findPlayerById(int id) {
+    public Player findPlayerById(long id) {
 
      String findPlayerById ="SELECT * FROM PLAYER WHERE ID = ?";
      return jdbcTemplate.queryForObject(findPlayerById, new Object[]{id}, Player.class);
@@ -61,7 +61,7 @@ public class PlayerDAO implements RowMapper<Player> {
     @Override
     public Player mapRow(ResultSet resultSet, int i) throws SQLException {
         Player player = new Player();
-        player.setId(resultSet.getInt("ID"));
+        player.setId(resultSet.getLong("ID"));
         player.setName(resultSet.getString("NAME"));
         player.setSurname(resultSet.getString("SURNAME"));
         player.setSex(resultSet.getString("SEX"));

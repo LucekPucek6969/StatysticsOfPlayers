@@ -1,9 +1,6 @@
-
-
 DROP TABLE IF EXISTS Player;
-
-CREATE TABLE Player (
-                        ID INT AUTO_INCREMENT  PRIMARY KEY,
+DROP TABLE IF EXISTS Event;
+CREATE TABLE PLAYER (   ID LONG IDENTITY (100,1) PRIMARY KEY,
                         NAME VARCHAR(100) DEFAULT NULL,
                         SURNAME VARCHAR(100)DEFAULT NULL,
                         SEX VARCHAR(10) DEFAULT NULL,
@@ -11,4 +8,8 @@ CREATE TABLE Player (
                         TEL VARCHAR(20) DEFAULT NULL,
                         DATEOFBIRTH DATE DEFAULT NULL,
                         LICENCENUMBER VARCHAR(50) DEFAULT NULL);
+CREATE TABLE EVENT (    ID LONG IDENTITY (1000,1) PRIMARY KEY ,
+                        NAME VARCHAR(250) DEFAULT NULL,
+                        DESCRIPTION VARCHAR(300) DEFAULT NULL,
+                        EVENTDATE DATE DEFAULT NULL);
 

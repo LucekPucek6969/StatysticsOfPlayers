@@ -8,7 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.temporal.TemporalAmount;
 
 
 @Data
@@ -17,7 +16,7 @@ import java.time.temporal.TemporalAmount;
 @EqualsAndHashCode(of = "id")
 public class Player {
 
-    private int id;
+    private Long id;
     private String name;
     private String surname;
     private String sex;

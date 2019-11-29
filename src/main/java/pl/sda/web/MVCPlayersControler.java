@@ -12,7 +12,6 @@ import java.util.List;
 public class MVCPlayersControler {
 
     private PlayerDAO playerDAO;
-
     public MVCPlayersControler(PlayerDAO playerDAO) {
         this.playerDAO = playerDAO;
     }
@@ -37,14 +36,15 @@ public class MVCPlayersControler {
     }
     @PostMapping("viewAllPlayers")
     public String createPlayer(Player player){
-        playerDAO.createPlayer(player);
-        playerDAO.newPlayer=player;
+        playerDAO.newPlayerID=playerDAO.createPlayer(player);
+        playerDAO.newPlayer=playerDAO.findPlayerById(playerDAO.newPlayerID);
         return "redirect:/players/newPlayerView";
     }
     @GetMapping("newPlayerView")
-    public String viewNewPlayer(Player player, Model model){
-        player=playerDAO.newPlayer;
-        model.addAttribute("player",player);
+    public String viewNewPlayer(Model model){
+        Player player = playerDAO.newPlayer;
+        model.addAttribute("player", player);
+        playerDAO.newPlayerID=null;
         playerDAO.newPlayer=null;
         return "newPlayerView";
     }
